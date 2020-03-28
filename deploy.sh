@@ -29,7 +29,7 @@ cd ..
 git add .
 
 # Commit content changes.
-msg="updatint content $(date)"
+msg="updating content $(date)"
 if [ -n "$*" ]; then
 	msg="$*"
 fi
