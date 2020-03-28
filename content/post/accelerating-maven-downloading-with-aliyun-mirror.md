@@ -2,9 +2,8 @@
 title: "使用阿里云加速依赖管理"
 date: 2020-03-29T00:21:43+08:00
 description: ""
-tags: []
-draft: true
-categories: []
+tags: ["java", "maven", "gradle"]
+categories: ["in-action"]
 ---
 
 开发Java应用的过程中通常需要依赖大量的第三方包，而由于众所周知的原因，我们访问这些资源的速度非常慢，感谢阿里云给我们提供了一个选项可以快速访问这些资源。
