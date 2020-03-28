@@ -7,12 +7,7 @@ weight: 50
 
 ---
 
-It makes use of a variety of open source projects including:
-
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+坐标北京，一个普普通通的软件开发人员。  
+想了很多，好像也没什么好写的。做过很多项目，虽然实现了目标，但总不甚满意。  
+在这里留一些碎碎念吧。  
 

@@ -6,7 +6,7 @@ preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
 theme = "even"
-enableGitInfo = false # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
+enableGitInfo = true # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 
 # Syntax highlighting by Chroma. NOTE: Don't enable `highlightInClient` and `chroma` at the same time!
 pygmentsOptions = "linenos=table"
@@ -20,6 +20,9 @@ paginate = 5                                              # 首页每页显示�
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = ""            # default: author.name ↓        # 默认为下面配置的author.name ↓
+
+[blackfriday]
+  extensions = ["hardLineBreak"]
 
 [author]                  # essential                     # 必需
   name = "happyhacker"
