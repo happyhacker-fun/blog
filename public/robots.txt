@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://blog.happyhacker.fun/sitemap.xml
