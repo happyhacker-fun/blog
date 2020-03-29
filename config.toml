@@ -135,10 +135,10 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     warn = 730              # Display warning if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示警告
 
   [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
-    owner = ""              # Your GitHub ID
-    repo = ""               # The repo to store comments
-    clientId = ""           # Your client ID
-    clientSecret = ""       # Your client secret
+    owner = "lovelock"              # Your GitHub ID
+    repo = "https://github.com/happyhacker-fun/blog-comments.git"               # The repo to store comments
+    clientId = "f8aeb40ba27eb5cabbbd"           # Your client ID
+    clientSecret = "f5f1cecc37c67bc89f1948be13abae10e7fa0d41"       # Your client secret
 
   [params.utterances]       # https://utteranc.es/
     owner = ""              # Your GitHub ID
