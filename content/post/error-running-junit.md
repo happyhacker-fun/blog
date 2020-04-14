@@ -35,7 +35,9 @@ Invalid test class 'MyTestClass':
 ...
 ```
 
-明显是有**runnable methods**的啊，原来是因为`@RunWith(SpringJUnit4ClassRunner.class)`这个注解，它是junit4的用法，加上它，就会查找带有`@org.junit.Test`注解的方法，也就是所谓的**runnable methods**。而我这里的看起来是`@Test`的方法，其实是`@org.junit.jupiter.api.Test`，是junit5的**runnable method**，二者不能兼容，所以就出现了上面的错误。
+事实上这个并不是问题的关键，当时这个问题的原因在于本地代码上传到远端的目录和我执行的目录不在一个地方，所以报错了。。。但总体上在执行单元测试时的用法和下文说的差不多，junit5不需要`@RunWith`注解了。
+
+~~明显是有**runnable methods**的啊，原来是因为`@RunWith(SpringJUnit4ClassRunner.class)`这个注解，它是junit4的用法，加上它，就会查找带有`@org.junit.Test`注解的方法，也就是所谓的**runnable methods**。而我这里的看起来是`@Test`的方法，其实是`@org.junit.jupiter.api.Test`，是junit5的**runnable method**，二者不能兼容，所以就出现了上面的错误。~~
 
 ## 总结
 
