@@ -27,6 +27,3 @@ brew install zookeeper
 brew services start zookeeper # 后台启动
 zkServer start # 前台启动
 ```
-
-
-
