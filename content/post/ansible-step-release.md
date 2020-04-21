@@ -2,6 +2,7 @@
 title: "基于ansible的渐进上线流程探究"
 date: 2020-04-17T23:28:21+08:00
 tags: ["ansible", "ci", "cd"]
+draft: true
 categories: ["in-action"]
 ---
 

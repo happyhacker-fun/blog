@@ -1,9 +1,8 @@
 ---
 title: "Install Centos8"
 date: 2020-04-06T00:10:43+08:00
-tags: []
-draft: true
-categories: []
+tags: ["linux", "centos8"]
+categories: ["in-action"]
 ---
 
 多年不安装虚拟机，竟然卡在了第一步。
@@ -22,5 +21,4 @@ categories: []
 
 ![](/images/2020-04-06-00-11-33.png)
 
-
-
+后面的步骤就不用说了。

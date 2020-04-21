@@ -3,13 +3,14 @@ title: "简单说说Firefox和Chrome"
 date: 2020-03-31T10:02:07+08:00
 description: "Chrome已然成为第二个IE6"
 tags: ["chrome", "firefox", "freedom"]
-draft: true
 categories: ["jabber"]
 ---
 
 自认为从易用性、自由度、速度和资源占用方面，Firefox（Quantom）已经超越了Chrome，但现在居然出现了兼容性问题。
 
 <!--more-->
+
+**虽然火狐优点很多，但不稳定这一点就足以让我放弃了，不知道是最近几次更新的不稳定还是怎样，打开一会儿就假死，在两台电脑上都频繁出现，忍受不了，还是用回Chrome了。**
 
 ## 易用性
 
