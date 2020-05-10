@@ -65,5 +65,17 @@ User frost
 ```
 这样就可以通过`ssh dev`这条简短的命令登录了。虽然用key做认证倒也无所谓，不过通常还是配置上上述内容中的前三行，让登录到同一个主机的ssh共享session，也就是说在使用密码登录时，只有第一次需要输入密码，在保留第一个连接时，后续的连接都可以免密。
 
+## 补充
+
+后来因为买了块新的硬盘重新安装了macOS，把之前安装的CentOS8虚拟机拷贝过来之后无法运行，调整了网络配置（从BridgeNetwork调整到NAT）之后可以开机了但是无法联网，不知道是什么原因。由于之前是配置了静态地址，在NAT模式下想着还是配置成DHCP吧，但发现nmcli并没有提供类似`nmcli connection reset`这种操作，所以只能删了重新配置。
+
+```
+nmcli connection delete enp0s3
+nmcli connection add type ethernet con-name home ifname enp3s0
+nmcli connection up home
+```
+
+即可联网了。关于`nmcli`还有很多细节的用法，可以参考[RedHat官方文档](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/sec-using_the_networkmanager_command_line_tool_nmcli)。
+
 ## 总结
 每次配置ssh都想起来几年前写的这个小工具[ic](https://github.com/lovelock/ic)，当时是为了更简单的配置本地端口转发，实现sftp上传文件，后来公司不让用这种方式了也就作罢了。不过当时还研究了下go语言和ssh的配置，还有homebrew的打包方式，虽然现在都不记得了。。。。
