@@ -7,6 +7,141 @@ categories: ["theory"]
 Java的stream api真是功能强大，但写的时候总是忘，这里简单记录以下。
 
 <!--more-->
+## 概念
+经常会搞混淆的应该就是Stream和Collection的区别。从定义上讲，Collection是一个内存数据结构，它包含了这个数据结构拥有的所有元素，每个元素都必须是确定的。也就是说，一个元素在加入到一个集合（Collection）中之前一定是计算好了的、确定的。而Stream从概念上固定的数据结构，它里面的元素可以按需计算。
+
+差异如下：
+1. 流并不存储其元素。这些元素可能存储在底层的集合中，或者是按需生成的。
+2. 流的操作不会修改其数据源。`filter`方法不会从流中移除元素，而是会生成一个新的流。
+3. 流的操作是尽可能惰性的，这意味着直至需要结果时，操作才会执行。
+
+## 创建Stream的几种方式
+
+### 1. `Stream.Of(val1, val2, val3)`
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        Stream<Integer> stream = Stream.of(1,2,3,4,5,6,7,8,9);
+        stream.forEach(p -> System.out.println(p));
+        // stream.forEach(System.out::println);
+    }
+}
+```
+
+### 2. `Stream.of(arrayOfElements)`
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        Stream<Integer> stream = Stream.of(new Integer[]{1,2,3,4,5,6,7,8,9});
+        stream.forEach(System.out::println);
+    }
+}
+```
+### 3. `List.stream()`
+
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        
+        Stream<Integer> stream = list.stream();
+        stream.forEach(System.out::println);
+    }
+}
+```
+
+### 4. `Stream.generate()`或`Stream.iterate()`
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        Stream<Date> stream = Stream.generate(Date::new);
+        stream.forEach(System.out::println);
+    }
+}
+```
+
+### 5. `String chars`或`String tokens`
+
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        IntStream stream = "12345_abcde".chars();
+        stream.forEach(System.out::println);
+    }
+}
+```
+
+### 6. Map通过`entrySet().stream()`
+```java
+public class StreamBuilders {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map.put(i, Character.toString(i+96));
+        }
+        Stream<Map.Entry<Integer, String>> stream = map.entrySet().stream();
+        stream.forEach(System.out::println);
+    }
+}
+```
+
+## 中间操作和终止操作
+
+
+```java
+public class StreamBuilders {
+    private static final List<String> memberNames = new ArrayList<>();
+    static {
+        memberNames.add("Amitabh");
+        memberNames.add("Shekhar");
+        memberNames.add("Aman");
+        memberNames.add("Rahul");
+        memberNames.add("Shahrukh");
+        memberNames.add("Salman");
+        memberNames.add("Yana");
+        memberNames.add("Lokesh");
+    }
+}
+```
+### 中间操作
+
+```java
+    public static void main(String[] args) {
+        memberNames.stream().filter(s -> s.startsWith("A"))
+                .forEach(System.out::println);
+
+        memberNames.stream().filter(s -> s.startsWith("S"))
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+        memberNames.stream().sorted()
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+    }
+```
+
+### 终止操作
+
+```java
+        memberNames.forEach(System.out::println);
+        System.out.println(memberNames.stream().map(String::toLowerCase)
+                .collect(Collectors.toList()));
+        boolean b1 = memberNames.stream().anyMatch(s -> s.startsWith("A"));
+        System.out.println(b1);
+        boolean b2 = memberNames.stream().allMatch(s -> s.startsWith("A"));
+        System.out.println(b2);
+        boolean b3 = memberNames.stream().noneMatch(s -> s.startsWith("A"));
+        System.out.println(b3);
+
+        long count = memberNames.stream().filter(s -> s.startsWith("S")).count();
+        System.out.println(count);
+
+        Optional<String> reduced = memberNames.stream()
+                .reduce((s1, s2) -> s1 + "#" + s2);
+        reduced.ifPresent(System.out::println);
+```
 
 ## `map`和`flatMap`
 
