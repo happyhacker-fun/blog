@@ -1,5 +1,5 @@
 ---
-title: "Flink 01"
+title: "Flink 0x00"
 date: 2020-05-20T21:15:22+08:00
 tags: []
 draft: true
@@ -11,6 +11,8 @@ categories: []
 <!--more-->
 
 - Flink的概念
+- Flink的部署
+- Flink应用开发入门
 - Flink与其他系统的集成
     - Springboot
         - 所有Flink应用公用一个全局配置类，用于存放`@EnableAutoConfiguration`或`@SpringbootApplication`注解，如`FlinkJobApplication`
