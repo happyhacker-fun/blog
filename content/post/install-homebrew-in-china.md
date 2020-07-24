@@ -12,7 +12,7 @@ categories: ["in-action"]
 
 所以我看了一下官方的安装脚本，参考了中科大的文档，把安装脚本中的github地址给改成中科大的，然后加上了brew-cask和brew-core，并把其中的`brew update --force`命令后面加了个`-v`，方便在安装的时候可以看到具体的进度。
 
-脚本正文直接贴出来，有想看github的[在这里](https://github.com/lovelock/install/edit/master/install.sh)。
+脚本正文直接贴出来，有想看github的[在这里](https://github.com/lovelock/install)。
 
 **脚本默认你使用的是zsh，有偏好使用bash的同学可以自行修改**
 
