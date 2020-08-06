@@ -2,7 +2,6 @@
 title: "Flink配置文件详解"
 date: 2020-07-27T11:25:19+08:00
 tags: ["flink", "hadoop"]
-draft: true
 categories: ["bigdata"]
 ---
 
