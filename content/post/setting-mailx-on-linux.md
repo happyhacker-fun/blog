@@ -1,5 +1,5 @@
 ---
-title: "最简单的发邮件方式"
+title: "最简单的命令行发邮件方式"
 date: 2020-07-20T17:10:43+08:00
 tags: ["linux", "mailx"]
 categories: ["in-action"]
