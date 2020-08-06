@@ -47,6 +47,34 @@ taskmanager.numberOfTaskSlots: 1
 
 需要保留的CheckPoint的数量，默认保留最新的一个CheckPoint，这样故障恢复时就只恢复最新的。有些情况下发现数据处理出错，可能需要恢复几个小时前的数据，就需要保留多个CheckPoint了。从指定的CheckPoint启动任务可以用：`bin/flink run -s hdfs://namenode01.td.com/flink-1.11.1/flink-checkpoints/582e17d2cc343e6c56255d111bae0191/chk-860/_metadata flink-app-jobs.jar`
 
+后面三个是state保存的路径，默认是被注释掉的，前期使用HDFS(filesystem)即可，后面如果遇到state太大，无法快速完成checkpoint，可以尝试使用RocksDB替换HDFS。
+开启了savepoint之后，在cancel任务时会将savepoint写入指定的地址，在启动时指定该地址即可。通常用于版本升级过程。
+
 ```yml
 state.checkpoints.num-retained: 20
+state.backend: filesystem
+state.checkpoints.dir: hdfs:///flink-checkpoints
+state.savepoints.dir: hdfs:///flink-savepoints
 ```
+## 5. 重启策略
+
+这个参数就很表意了，按固定时间间隔尝试重启，最多尝试10次。可以根据需求调整配置。
+
+```yml
+restart-strategy: fixed-delay
+restart-strategy.fixed-delay.attempts: 10
+restart-strategy.fixed-delay.delay: 10s
+```
+
+## 6. 超时配置
+
+之前是没有想写这个配置的，但在实际运行过程中确实发现了这个问题。其实在前面也说过了，就是因为每个task一个slot，然后开了100个taskmanager，这样就有100个taskmanager线程都需要和jobmanager交互，每个都不超时的概率就很低了。所以改了`numberOfTaskSlots`来减少taskmanager线程的同时也调整了以下这个超时时间。
+
+```yml
+akka.ask.timeout: 100 s
+web.timeout: 100000
+```
+
+## 7. 高可用配置
+
+敬请期待
