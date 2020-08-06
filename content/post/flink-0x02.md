@@ -49,4 +49,3 @@ taskmanager.numberOfTaskSlots: 1
 ```yml
 state.checkpoints.num-retained: 20
 ```
-
