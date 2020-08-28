@@ -123,7 +123,7 @@ server {
 ```
 
 注意：默认情况下只会转发`GET`/`HEAD`/`PUT`/`DELETE`/`OPTIONS`这种幂等的请求，而不会转发`POST`请求，如果需要对`POST`请求也做转发，就需要加上`non_idempotent`配置，整体配置如下
-```
+```nginx
 upstream ha {
 	server 192.168.99.100:32771;
 	server 192.168.99.100:32772 backup;
