@@ -122,6 +122,23 @@ server {
 }
 ```
 
+注意：默认情况下只会转发`GET`/`HEAD`/`PUT`这种幂等的请求，而不会转发`POST`请求，如果需要对`POST`请求也做转发，就需要加上`non_idempotent`配置，整体配置如下
+```
+upstream ha {
+	server 192.168.99.100:32771;
+	server 192.168.99.100:32772 backup;
+}
+server {
+	listen       80;
+	server_name  _;
+
+	location / {
+		proxy_next_upstream http_502 http_504 http_404 error timeout invalid_header non_idempotent;
+		proxy_pass   http://ha/spring-demo-0.0.1-SNAPSHOT/;
+	}
+}
+```
+
 注意`proxy_next_upstream http_502 http_504 http_404 error timeout invalid_header;`这行，这里就是表示把访问当前的upstream返回了这些状态码的请求转发到upstream中的下一台机器，在我们现在的应用场景下，当war包发布时，正在更新war包的tomcat会返回404，也就是对应`http_404`，如果不配置这行，是不会做转发的。
 但这样简单的配置还会有一个问题，那就是Nginx不会把出问题的后端从upstream中摘除，也就是说请求还会访问到这个正在更新中的realserver，只是Nginx会再把请求转发到下一台好的realserver上，这样会增加一些耗时。目前有三种方式可以实现对Nginx负载均衡的后端节点服务器进行健康检查，具体参考[Nginx负载均衡](./loadbalance-with-nginx.md)
 
