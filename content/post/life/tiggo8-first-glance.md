@@ -1,5 +1,5 @@
 ---
-title: "奇瑞瑞虎8第一天用车体验"
+title: "2020款奇瑞瑞虎8用车体验"
 date: 2020-09-23T09:56:14+08:00
 tags: ["car", "tiggo8"]
 categories: ["life"]
