@@ -23,7 +23,7 @@ categories: ["in-action", "devops"]
 
 ## 基本原理
 
-基本的原理就是让Nginx后方有3个Tomcat容器，其中1个是active，1个是standby，正常情况下不会访问到standby的容器，但可以通过额外的手段保证standby的容器是可以提供服务的，在发布前先更新所有的standby节点，验证没问题之后更新active的容器，来保证服务不会中断。
+基本的原理就是让Nginx后方有2个Tomcat容器，其中1个是active，1个是backup，正常情况下不会访问到backup的容器，但可以通过额外的手段保证backup的容器是可以提供服务的，在发布前先更新所有的backup节点，验证没问题之后更新active的容器，来保证服务不会中断。
 
 ## 实际操作
 
@@ -66,7 +66,7 @@ mvn clean package -Dmaven.test.skip=true
 
 ```
 docker run -itd --name tomcat-active -v /tmp/tomcat/active:/usr/local/tomcat/webapps -p 32771:8080 tomcat
-docker run -itd --name tomcat-standby -v /tmp/tomcat/standby:/usr/local/tomcat/webapps -p 32772:8080 tomcat
+docker run -itd --name tomcat-backup -v /tmp/tomcat/backup:/usr/local/tomcat/webapps -p 32772:8080 tomcat
 ```
 
 ### 将war包拷贝到容器中
@@ -75,7 +75,7 @@ docker run -itd --name tomcat-standby -v /tmp/tomcat/standby:/usr/local/tomcat/w
 
 ```
 docker cp ~/workspace/spring-demo/target/spring-demo-0.0.1-SNAPSHOT.war tomcat-active:/usr/local/tomcat/webapps/
-docker cp ~/workspace/spring-demo/target/spring-demo-0.0.1-SNAPSHOT.war tomcat-standby:/usr/local/tomcat/webapps/
+docker cp ~/workspace/spring-demo/target/spring-demo-0.0.1-SNAPSHOT.war tomcat-backup:/usr/local/tomcat/webapps/
 ```
 
 ### 访问两个容器中的服务
@@ -173,7 +173,7 @@ Transfer/sec:     55.05KB
 ```
 同样没有非200的响应，而且整体和正常情况相当。
 
-3. 只有standby节点工作的情况下压测
+3. 只有backup节点工作的情况下压测
 ```
 $ wrk -c 20 -d 10 -t 4 http://192.168.99.100:32778/hello
 Running 10s test @ http://192.168.99.100:32778/hello
@@ -232,7 +232,7 @@ Running 1m test @ http://192.168.99.100:32778/hello
 Requests/sec:    381.42
 Transfer/sec:     59.95KB
 ```
-没有明显变化，测试开始后有一段时间standby节点收到请求，后面请求又全部指向了active节点。可能是因为服务太简单，重新加载的太快，只有很少量（5750）的请求转发到了standby节点，所以对整体结果影响不大。
+没有明显变化，测试开始后有一段时间backup节点收到请求，后面请求又全部指向了active节点。可能是因为服务太简单，重新加载的太快，只有很少量（5750）的请求转发到了backup节点，所以对整体结果影响不大。
 3. 开始测试后立即删除active节点的war包
 
 ```
@@ -246,7 +246,7 @@ Running 1m test @ http://192.168.99.100:32778/hello
 Requests/sec:    279.84
 Transfer/sec:     43.99KB
 ```
-删除节点后，所有的请求都会先请求active，然后被Nginx转发至standby，所以吞吐量有明显下降，延迟也有明显的提升。
+删除节点后，所有的请求都会先请求active，然后被Nginx转发至backup，所以吞吐量有明显下降，延迟也有明显的提升。
 
 ## 效果测试
 
