@@ -119,6 +119,29 @@ I am Bailey and I am 11 years old
 ```
 这时候把这个压缩包发给别人，别人就可以直接这样执行了。
 
+### 添加和修改清单属性
+
+如果第一次打包的时候没有添加MANIFEST文件，jar会自动添加一个`META-INF/MANIFEST.MF`文件，但其中只包含`Manifest-Version`和`Created-By`两个属性，在执行的时候还要在命令行传入入口才可以执行。所以这时如果要给MANIFEST文件添加属性，可以这么做。
+
+1. 创建一个新的清单文件，比如MANIFEST-ADDITION.MF
+2. 将需要添加的属性假如新的清单文件
+3. 执行`jar ufvm App.jar MANIFEST-ADDITION.MF`
+
+```
+Main-Class: App
+Author: happyhakcer
+```
+然后通过vim打开这个jar包就可以看到其中的清单文件已经更新了。
+
+另外，如果是打包前就已经手动写好了完整的清单文件，也可以通过`jar cfvm`的方式直接把清单文件打包进jar包。
+
+需要注意一点，在执行`jar vcfme`这种命令时，`f` `m` `e`这三个选项的顺序也决定了后面传入的参数表示的含义，`f`表示目标文件（jar包的名称），`m`表示清单文件，`e`(entry)则表示入口点。
+比如可以是
+```
+jar vcfme app.jar MANIFEST.MF App App.class entity/*.class
+```
+> 这里是为了说明问题，如果MANIFEST.MF中已经指定了`Main-Class`属性，则在执行上面的命令时会因为又通过`e`选项指定了入口点而执行失败。
+
 ## jar包的官方标准
 
 现在我们已经有了一个标准的jar包了，下面打开它看看这个清单文件中究竟包含了什么信息
