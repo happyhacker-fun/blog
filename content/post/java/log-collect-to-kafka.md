@@ -22,7 +22,11 @@ categories: ["in-action"]
 ![Java日志收集流程](/images/2020-11-17-12-21-33.png)
 
 ## 日志收集
-
+|日志框架 |收集方式 |
+|---|---|
+|log4j | kafka-log4j-appender | 
+|logback | logback-kafka-appender |
+|log4j2 | 自己写 |
 ### log4j
 
 ```properties

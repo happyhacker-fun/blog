@@ -35,8 +35,10 @@ categories: ["in-action"]
 > 注意：执行`docker-machine create`命令的时候还是会检查上面提到的有问题的虚拟化技术检查，所以需要加上一个`--virtualbox-no-vtx-check`选项
 
 ```
-docker-machine create default --engine-registry-mirror=https://yourcode.mirror.aliyuncs.com -d virtualbox --virtualbox-no-vtx-check
+docker-machine create default --engine-registry-mirror=https://yourcode.mirror.aliyuncs.com -d virtualbox --virtualbox-no-vtx-check --virtualbox-memory "8096" --virtualbox-cpu-count "6"
 ```
+
+> 2020年11月添加：后来使用过程中发现内存会不够用，因为默认是1G内存和1个CPU核心，这明显是不能满足正常的使用需求的，所以就需要加一些资源了。
 
 ## 打开Kitematic开始体验docker
 
