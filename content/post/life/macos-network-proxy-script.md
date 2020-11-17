@@ -21,7 +21,7 @@ categories: ["macOS"]
 networksetup -help
 ```
 
-输出太多了，这里就不贴了，可以自己尝试一下。我们关注的是代理（Proxy），所以在输出的信息里搜索proxy，就会找到这两个
+输出太多了，这里就不贴了，可以自己尝试一下。我们关注的是代理（Proxy），所以在输出的信息里搜索proxy，就会找到以下内容
 
 ```
 Usage: networksetup -setautoproxyurl <networkservice> <url>
@@ -37,6 +37,7 @@ Usage: networksetup -setautoproxystate <networkservice> <on off>
 
 很明显也就看出来各自的用途了，知道这个了就很容写出两个脚本了
 
+**由于我的是黑苹果，使用的是有线网络，所以这里的网络名是en0，你的电脑用的是什么网络需要你自己去发现了**
 ### 设置代理
 ```bash
 #!/usr/bin/env bash
