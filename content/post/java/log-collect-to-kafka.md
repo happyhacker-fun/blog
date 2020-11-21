@@ -7,6 +7,7 @@ categories: ["in-action"]
 ---
 
 日志只有收集之后可以根据需求查询了才有意义。
+
 <!--more-->
 
 ## 背景
@@ -61,14 +62,14 @@ categories: ["in-action"]
 log4j.rootLogger=INFO, console
 
 log4j.logger.org.apache.kafka=WARN
-log4j.category.fun.happyhacker=DEBUG, kafka
+log4j.logger.fun.happyhacker=DEBUG, kafka
 log4j.additivity=false
 log4j.appender.console=org.apache.log4j.ConsoleAppender
 log4j.appender.console.layout=org.apache.log4j.PatternLayout
 log4j.appender.console.layout.ConversionPattern=%d{HH:mm:ss,SSS} %-5p %-60c %x - %m%n
 
 log4j.appender.kafka=org.apache.kafka.log4jappender.KafkaLog4jAppender
-log4j.appender.kafka.brokerList=10.73.33.38:6667,10.73.33.44:6667,10.75.12.85:6667
+log4j.appender.kafka.brokerList=127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094
 log4j.appender.kafka.topic=flink_logs
 log4j.appender.kafka.clientJaasConf=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="apassword";
 log4j.appender.kafka.saslMechanism=PLAIN
