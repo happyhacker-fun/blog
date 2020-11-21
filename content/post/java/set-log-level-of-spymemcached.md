@@ -42,6 +42,8 @@ log4j.logger.addivitity.*=false
 System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.Log4jLogger");
 ```
 
+> 这个很可能是slf4j这种日志门面出现之前的一种自己实现的方案，而slf4j-api/log4j-api就是解决这个问题的了。
+
 即可。加上之后再运行程序就会发现颜色已经和其他的日志一样了。
 
 ## 总结
