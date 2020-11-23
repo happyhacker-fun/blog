@@ -131,6 +131,50 @@ public class App {
 
 好消息是并没有太多的应用使用jul。所以啊，即便你是官方的实现，也不一定那么受欢迎。
 
+### 延伸
+
+多数情况可能是要用`log4j-over-slf4j`来将对log4j的直接调用转调到slf4j-api上，然后再通过其他的日志框架，比如logback来写日志。这里可以简单的追踪以下调用过程。
+
+```java
+package fun.happyhacker;
+
+import org.apache.log4j.Logger;
+
+public class Log4jTest {
+    private static final Logger LOG = Logger.getLogger(Log4jTest.class);
+
+    public static void main(String[] args) {
+        LOG.info("hello from log4j");
+    }
+}
+```
+
+配合相应的log4j.properties就能有相应的输出。那么如果我不想改这块代码，而想让它直接通过logback输出，就需要引入另外两个依赖
+```xml
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+```
+这时在上述代码的第9行打个断点进入debug模式，走到第一步`Category.java`，就会发现上面会有一个提示，如图所示
+![](/images/2020-11-23-22-20-22.png)
+
+但当你真的选了第二个源码文件的时候它又会有另一个提示
+![](/images/2020-11-23-22-20-55.png)
+
+这说明它在执行的时候还是用的log4j包中的class文件，而不是log4j-over-slf4j。这时候把依赖中的log4j去掉（实际项目中应该是exclude掉）。再次执行就会发现没有这个提示了，取而代之的是代码的调用直接进入了log4j-over-slf4j中的，打开这个包的源码你就会发现它的包结构和log4j是一致的
+![](/images/2020-11-23-22-25-14.png)
+
+所以其实就是用log4j-over-slf4j中的类“偷偷”的替换了log4j中的类，其实已经变成了基于slf4j中的实现。
+
+
+
 ## 更实际的情况
 
 上面讲述的这种情况很少见，但更常见的是什么呢？其中一个就是[配置Spymemcached的日志级别](/post/java/set-log-level-of-spymemcached)。更复杂的场景在下面。
