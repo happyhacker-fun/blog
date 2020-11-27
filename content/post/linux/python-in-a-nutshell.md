@@ -26,15 +26,7 @@ python3默认就支持UTF-8了，这个也就不需要了。
 import netifaces as ni
 
 def get_hostname():
-	ip = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
-
-	ip_split= ip.split('.')
-	if ip_split[1] == '73':
-		prefix = 'hadoop-tc-'
-	else:
-		prefix = 'hadoop-yf-'
-
-	return prefix + ip_split[2] + '-' + ip_split[3]
+	return ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
 ```
 
 ### 3. 判断一个包是否已经安装
