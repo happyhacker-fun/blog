@@ -9,13 +9,10 @@ categories: ["life"]
 
 <!--more-->
 
-## 问题来源
+## 问题一：macOS电脑无法登陆网站
 
-
-## macOS 电脑如何登陆网站？
-
-可以通过访问 `http://219.232.200.39/uamsso/SSOSecService?sid=e10adc3949ba59abbe56e057f20f883e&LinkType=online&LinkID=666` 这个地址打开一个可以输入用户名、密码和验证码的页面，虽然页面样式也是错乱的，但不影响。
-
+### 解决方案
+访问 `http://219.232.200.39/uamsso/SSOSecService?sid=e10adc3949ba59abbe56e057f20f883e&LinkType=online&LinkID=666` 这个地址打开一个可以输入用户名、密码和验证码的页面，虽然页面样式也是错乱的，但不影响。
 
 ![](/images/2021-01-02-12-59-34.png)
 
@@ -25,7 +22,7 @@ categories: ["life"]
 ![](/images/2021-01-02-13-02-41.png)
 这里的功能没有问题，跳过。
 
-## 标签页无法切换
+## 问题二：无法切换标签页
 
 有时候办事儿还需要提供工作居住证的审批流程，也就是
 ![](/images/2021-01-02-13-03-20.png)
@@ -41,9 +38,56 @@ categories: ["life"]
 
 找到了问题的根源就好解决了。
 
-### 解决问题
+解决方案：
 
-最简单的办法就是把这行错误代码后面的函数定义直接复制到console里面执行一下就好了。但为了刷新页面之后还能用，还是得把代码“注入”到页面上。
+### 方案一
+最简单的办法就是把这行错误代码后面的函数定义直接复制到console里面执行一下就好了。
+
+```javascript
+function changeSub(flag) {
+	if (flag == "education") {
+		document.getElementById("education").style.display = "";
+		document.getElementById("unit").style.display = "none";
+		document.getElementById("achievement").style.display = "none";
+		document.getElementById("follows").style.display = "none";
+	} else if (flag == "unit") {
+		document.getElementById("education").style.display = "none";
+		document.getElementById("unit").style.display = "";
+		document.getElementById("achievement").style.display = "none";
+		document.getElementById("follows").style.display = "none";
+	} else if (flag == "achievement") {
+		document.getElementById("education").style.display = "none";
+		document.getElementById("unit").style.display = "none";
+		document.getElementById("achievement").style.display = "";
+		document.getElementById("follows").style.display = "none";
+	} else if (flag == "follows") {
+		document.getElementById("education").style.display = "none";
+		document.getElementById("unit").style.display = "none";
+		document.getElementById("achievement").style.display = "none";
+		document.getElementById("follows").style.display = "";
+	}
+}
+
+function toMod() {
+	window.location = "/yjrc/person/ApplyCardAction.do?formAction=cApply";
+}
+
+function back() {
+	window.location = "/yjrc/person/ApplyListAction.do?formAction=in&opType=cApply";
+}
+
+function queryEdu(id) {
+	var goUrl = "/yjrc/person/QueryEduResumAction.do?formAction=in&applyId=" + id;
+	window.open(goUrl, 'querywindow', 'width=1030,height=420,top=10,left=10,status=yes,menubar=no,resizable=yes,scrollbars=yes');
+}
+
+function queryWork(id) {
+	var goUrl = "/yjrc/person/QueryWorkResumAction.do?formAction=in&applyId=" + id;
+	window.open(goUrl, 'querywindow', 'width=1030,height=420,top=10,left=10,status=yes,menubar=no,resizable=yes,scrollbars=yes');
+}
+```
+但为了刷新页面之后还能用，还是得把代码“注入”到页面上，这也是方案二要做的。
+### 方案二
 
 之前简单了解了Chrome浏览器的扩展开发原理，其实现在面临的这个问题用扩展就很好解决了，在页面加载完成后往页面上写一个`<script>`标签，把那些因为语法错误而中断执行的代码粘贴进去。
 
@@ -52,6 +96,16 @@ categories: ["life"]
 ![](/images/2021-01-02-13-14-02.png)
 
 其中`content-script.js`负责在页面上写入`<script>`标签，并把`extension.js`注入进去，后者里面就是那些需要添加的函数。
+
+如果你选择了方案二，可以继续往下读，如果你选择了方案一，那么你的问题已经解决了。
+
+## 安装扩展
+
+1. 把代码从github上下载下来，找到其中的`chrome-extension`目录
+2. 浏览器找到扩展管理页面
+![](/images/2021-01-02-13-39-12.png)
+3. 点击 **Load Unpacked**，选择上面提到的`chrome-extension`目录
+4. 结束
 
 ## 总结
 
