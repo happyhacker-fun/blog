@@ -5,24 +5,22 @@ title = "happyhakcer makes fun"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
-theme = "even"
-enableGitInfo = true # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
+theme = "maupassant"
+disableKinds = ["RSS"] 
+summaryLength = 30 
+# enableGitInfo = true # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 
 # Syntax highlighting by Chroma. NOTE: Don't enable `highlightInClient` and `chroma` at the same time!
 pygmentsOptions = "linenos=table"
 pygmentsCodefences = true
 pygmentsUseClasses = true
 pygmentsCodefencesGuessSyntax = true
-markup = "markdown"
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 paginate = 5                                              # 首页每页显示的文章数
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = ""            # default: author.name ↓        # 默认为下面配置的author.name ↓
-
-[blackfriday]
-  extensions = ["hardLineBreak"]
 
 [author]                  # essential                     # 必需
   name = "happyhacker"
@@ -31,17 +29,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   changefreq = "weekly"
   priority = 0.5
   filename = "sitemap.xml"
-
-[[menu.main]]             # config your menu              # 配置目录
-  name = "首页"
-  weight = 10
-  identifier = "home"
-  url = "/"
-[[menu.main]]
-  name = "归档"
-  weight = 20
-  identifier = "archives"
-  url = "/post/"
+[menu]
 [[menu.main]]
   name = "标签"
   weight = 30
@@ -52,6 +40,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   weight = 40
   identifier = "categories"
   url = "/categories/"
+## 配置代码高亮
+[markup]
+  [markup.highlight]
+    lineNos = true
+    style = "monakai"
 
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
@@ -61,10 +54,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   # use public git repo url to link lastmod git commit, enableGitInfo should be true.
   # 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.
   gitRepo = ""
+  localSearch = true
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
   logoTitle = "Happyhacker"        # default: the title value    # 默认值: 上面设置的title值
-  keywords = ["Java", "PHP", "Architect"]
+  # keywords = ["Java", "PHP", "Architect"]
   description = "happyhacker makes fun"
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
@@ -110,7 +104,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = []
+  customCSS = ["style.css"]
   customJS = []
 
   uglyURLs = false # please keep same with uglyurls setting
@@ -134,28 +128,12 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     hint = 365  #Display hint if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示提醒
     warn = 730              # Display warning if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示警告
 
-#  [params.utterances]       # https://utteranc.es/
-#    owner = "happyhacker-fun"              # Your GitHub ID
-#    repo = "blog-comments"               # The repo to store comments
-
-  [params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
-    owner = ""              # Your GitHub ID
-    repo = ""               # The repo to store comments
-    clientId = ""           # Your client ID
-    clientSecret = ""       # Your client secret
-
-  # Valine.
-  # You can get your appid and appkey from https://leancloud.cn
-  # more info please open https://valine.js.org
-  [params.valine]
-    enable = false
-    appId = '你的appId'
-    appKey = '你的appKey'
-    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
-    verify = false # Verification code
-    avatar = 'mm' 
-    placeholder = '说点什么吧...'
-    visitor = false
+ [params.utteranc]       # https://utteranc.es/
+   enable = true
+   repo = "lovelock/blog-comments"               # The repo to store comments
+   issueTerm = "pathname"  #表示你选择以那种方式让github issue的评论和你的文章关联。
+   theme = "github-light" # 样式主题，有github-light和github-dark两种
+   async = true
 
   [params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/
     enable = true
@@ -166,15 +144,15 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     options = ""            # default: "{theme: 'simple'}"
 
   [params.busuanzi]         # count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量
-    enable = false
+    enable = true
     siteUV = true
     sitePV = true
     pagePV = true
 
   [params.reward]                                         # 文章打赏
-    enable = false
-    wechat = "/path/to/your/wechat-qr-code.png"           # 微信二维码
-    alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
+    enable = true
+    wechat = "/wechat-pay.jpg"           # 微信二维码
+    # alipay = ""           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:frostwong@gmail.com"
@@ -200,20 +178,19 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   [privacy.youtube]
     privacyEnhanced = true
 
-# 将下面这段配置取消注释可以使 hugo 生成 .md 文件
-# Uncomment these options to make hugo output .md files.
-#[mediaTypes]
-#  [mediaTypes."text/plain"]
-#    suffixes = ["md"]
-#
-#[outputFormats.MarkDown]
-#  mediaType = "text/plain"
-#  isPlainText = true
-#  isHTML = false
-#
-#[outputs]
-#  home = ["HTML", "RSS"]
-#  page = ["HTML", "MarkDown"]
-#  section = ["HTML", "RSS"]
-#  taxonomy = ["HTML", "RSS"]
-#  taxonomyTerm = ["HTML"]
+[params.cc]
+    name = "知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议"
+    link = "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+
+# [[params.ads]]
+#   title = "领取￥1888阿里云产品通用代金券"
+#   url = "https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=jdg9oj97"
+
+# [[params.ads]]
+#   title = "领取￥1888阿里云产品通用代金券"
+#   url = "https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?userCode=jdg9oj97"
+#   img = "https://img.alicdn.com/tfs/TB17qJhXpzqK1RjSZFvXXcB7VXa-200-126.jpg"
+# [[params.ads]]
+#   title = "领取￥1888阿里云产品通用代金券"
+#   url = "https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=jdg9oj97"
+#   img = "https://img.alicdn.com/tfs/TB1aDXhXpzqK1RjSZFvXXcB7VXa-259-194.jpg"

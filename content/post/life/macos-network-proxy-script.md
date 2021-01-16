@@ -39,7 +39,7 @@ Usage: networksetup -setautoproxystate <networkservice> <on off>
 
 **由于我的是黑苹果，使用的是有线网络，所以这里的网络名是en0，你的电脑用的是什么网络需要你自己去发现了**
 ### 设置代理
-```bash
+```bash {linenos: false}
 #!/usr/bin/env bash
 
 echo "Enabling auto proxy...."
