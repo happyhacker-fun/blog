@@ -7,8 +7,7 @@ enableRobotsTXT = true
 enableEmoji = true
 theme = "maupassant"
 disableKinds = ["RSS"] 
-summaryLength = 30 
-# enableGitInfo = true # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
+summaryLength = 140
 
 # Syntax highlighting by Chroma. NOTE: Don't enable `highlightInClient` and `chroma` at the same time!
 pygmentsOptions = "linenos=table"
@@ -40,20 +39,12 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   weight = 40
   identifier = "categories"
   url = "/categories/"
-## 配置代码高亮
-[markup]
-  [markup.highlight]
-    lineNos = true
-    style = "monakai"
 
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
 
   since = "2020"            # Site creation time          # 站点建立时间
-  # use public git repo url to link lastmod git commit, enableGitInfo should be true.
-  # 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.
-  gitRepo = ""
   localSearch = true
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
@@ -104,7 +95,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  customCSS = ["style.css"]
+  customCSS = []
   customJS = []
 
   uglyURLs = false # please keep same with uglyurls setting
@@ -148,11 +139,6 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     siteUV = true
     sitePV = true
     pagePV = true
-
-  [params.reward]                                         # 文章打赏
-    enable = true
-    wechat = "/wechat-pay.jpg"           # 微信二维码
-    # alipay = ""           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:frostwong@gmail.com"
