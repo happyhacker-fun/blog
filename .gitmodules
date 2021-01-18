@@ -1,3 +1,6 @@
 [submodule "themes/maupassant"]
 	path = themes/maupassant
 	url = git@github.com:lovelock/maupassant-hugo.git
+[submodule "search/lunr"]
+	path = search/lunr
+	url = git@github.com:lovelock/hugo-lunr-zh.git
