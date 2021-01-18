@@ -2,7 +2,6 @@
 title: "黑苹果bootmenu"
 date: 2020-06-14T15:49:21+08:00
 tags: ["ryzentosh"]
-draft: true
 categories: ["in-action"]
 ---
 
