@@ -312,7 +312,7 @@ JPA本质就是Hibernate，是一个“轻量级”的ORM框架（至于是不�
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.20</version>
-        </dependency
+        </dependency>
 ```
 
 ##### 添加配置 `application.properties`
