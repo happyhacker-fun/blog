@@ -178,8 +178,7 @@ public class JDBCTest {
 ```
 
 > 注意其中的`Class.forName("com.mysql.cj.jdbc.Driver")`这句，老的文档都会写这句，但其实使用新版的 MySQL Driver 的话这个已经不需要了，因为新版本有这个
->
-> <img src="0x04-datalink开发指南-数据库.assets/image-20210121124122626.png" alt="image-20210121124122626" style="zoom:50%;" />
+> ![](/images/2021-02-18-22-31-13.png)
 
 ### 连接池
 
