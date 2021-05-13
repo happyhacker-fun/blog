@@ -4,8 +4,6 @@ date: 2021-02-05T22:07:54+08:00
 tags: ["java", "concurrent", "thread"]
 draft: true
 categories: ["theory"]
-typora-root-url: ../../../static
-
 ---
 
 Java相比PHP的一大优势就是具有强大的并发能力了，本文详细阐述Java并发编程的方法和注意事项。
@@ -13,6 +11,8 @@ Java相比PHP的一大优势就是具有强大的并发能力了，本文详细�
 <!--more-->
 
 ## 为什么要并发
+
+使用并发最大的一个原因就是要**充分发挥多核处理器的能力**，单线程应用
 
 ### 线程的优势
 
