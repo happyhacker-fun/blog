@@ -33,7 +33,13 @@ func main() {
 
 ### 初始化一个开启了go mod的项目
 
-`go mod init` 会创建一个空的`go.mod`文件，这很像是Java的pom.xml，但要简洁的多的多了。
+`go mod init` 会创建一个简单的`go.mod`文件，这很像是Java的pom.xml，但要简洁的多的多了。
+
+```mod
+module github.com/lovelock/go-tutorials
+
+go 1.17
+```
 
 ### 整理依赖
 
@@ -46,16 +52,41 @@ func main() {
 
 ### 在macOS或Linux上打包
 
-```
+```bash
 CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build main.go
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
 ```
+
+### 在Windows上打包
+
+```bash
+set CGO_ENABLED=0
+set GOOS=darwin
+set GOARCH=amd64
+go build main.go
+```
+
+> 想看是否生效，可以用`go env`查看
+
 
 ## `go clean`
 
+`go build`之后会生成二进制可执行文件，执行`go clean`会把已经生成的可执行文件删除掉
+
 ## `go install`
+
+如果把`go build`比喻成`mvn package`，那么`go install`就是`mvn install`了。会把二进制文件放在GOPATH中，如果妥善设置了GOPATH，就可以直接用了。
+
+## `go test`
+
+执行单元测试用的，可以用来做功能测试和性能测试，所有测试文件以`_test.go`结尾。
+功能测试的方法以`Test`开始，参数是`(t *testing.T)`；
+性能测试的方法以`Benchmark`开始，参数是`(b *testing.B)`。
 
 ## `go get`
 
+到这才是go modules的关键，它是用来拉取依赖包的，它有一些控制参数，比如`go get -t`表示要打包要安装的包的单元测试，`go get -u`表示安装依赖包的最新的小版本。所谓小版本又涉及到语义化版本了，具体可以看[这里](https://semver.org/lang/zh-CN/)
 
-## `go test`
+
 
