@@ -84,6 +84,53 @@ go build main.go
 功能测试的方法以`Test`开始，参数是`(t *testing.T)`；
 性能测试的方法以`Benchmark`开始，参数是`(b *testing.B)`。
 
+如果要执行指定的test文件，有以下几种情形
+
+### 执行当前项目内所有的单元测试文件
+
+```bash
+go test ./...
+```
+
+### 执行`$GOPATH`指定目录内的所有单元测试文件
+
+```bash
+go test foo/...
+```
+
+### 执行当前目录内指定目录内所有单元测试文件
+
+```bash
+go test ./foo/...
+```
+
+### 执行`$GOPATH`内指定文件前缀的单元测试文件
+
+```bash
+go test foo...
+```
+
+### 执行当前项目内指定文件前缀的单元测试文件
+
+```bash
+go test foo...
+```
+
+### 执行`$GOPATH`内所有的单元测试文件文件
+
+```bash
+go test ...
+```
+
+### 执行指定的方法
+
+```bash
+go test tests/foo/math_test.go -test.run TestHello
+go test ./... -test.run TestHello
+go test tests/foo/math_test.go -run TestHello
+go test ./... -run TestHello
+```
+
 ## `go get`
 
 到这才是go modules的关键，它是用来拉取依赖包的，它有一些控制参数，比如`go get -t`表示要打包要安装的包的单元测试，`go get -u`表示安装依赖包的最新的小版本。所谓小版本又涉及到语义化版本了，具体可以看[这里](https://semver.org/lang/zh-CN/)
