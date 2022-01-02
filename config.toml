@@ -5,9 +5,13 @@ title = "happyhacker的公开日志"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
-theme = "maupassant"
+theme = "github-style"
 disableKinds = ["RSS"] 
 summaryLength = 140
+pygmentsCodeFences = true
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -38,7 +42,7 @@ summaryLength = 140
       lineNos = true
       lineNumbersInTable = true
       noClasses = true
-      style = "emacs"
+      # style = "emacs"
       tabWidth = 4
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
