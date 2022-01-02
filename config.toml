@@ -115,11 +115,6 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   baiduVerification = ""   # Baidu Verification
   googleVerification = ""  # Google Verification         # 谷歌
 
-  # Link custom CSS and JS assets
-  #   (relative to /static/css and /static/js respectively)
-  customCSS = []
-  customJS = ["lunr.min.js"]
-
   uglyURLs = false # please keep same with uglyurls setting
 
   [params.publicCDN]        # load these files from public cdn                          # 启用公共CDN，需自行定义
@@ -156,49 +151,6 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     enable = true
     options = ""            # default: "{theme: 'simple'}"
 
-  [params.busuanzi]         # count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量
-    enable = true
-    siteUV = true
-    sitePV = true
-    pagePV = true
-
-  [params.social]                                         # 社交链接
-    a-email = "mailto:frostwong@gmail.com"
-    b-stack-overflow = "https://stackoverflow.com/users/2969224/unixagain"
-    #c-twitter = "http://localhost:1313"
-    #d-facebook = "http://localhost:1313"
-    #e-linkedin = "http://localhost:1313"
-    #f-google = "http://localhost:1313"
-    g-github = "https://github.com/lovelock"
-    h-weibo = "https://weibo.com/u/2122681617/"
-    #i-zhihu = "http://localhost:1313"
-    #j-douban = "http://localhost:1313"
-    #k-pocket = "http://localhost:1313"
-    #l-tumblr = "http://localhost:1313"
-    #m-instagram = "http://localhost:1313"
-    #n-gitlab = "http://localhost:1313"
-    o-bilibili = "https://space.bilibili.com/32881881"
-
-# See https://gohugo.io/about/hugo-and-gdpr/
-[privacy]
-  [privacy.googleAnalytics]
-    anonymizeIP = true      # 12.214.31.144 -> 12.214.31.0
-  [privacy.youtube]
-    privacyEnhanced = true
-
 [params.cc]
     name = "知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议"
     link = "https://creativecommons.org/licenses/by-nc-nd/4.0/"
-
-# [[params.ads]]
-#   title = "领取￥1888阿里云产品通用代金券"
-#   url = "https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=jdg9oj97"
-
-# [[params.ads]]
-#   title = "领取￥1888阿里云产品通用代金券"
-#   url = "https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?userCode=jdg9oj97"
-#   img = "https://img.alicdn.com/tfs/TB17qJhXpzqK1RjSZFvXXcB7VXa-200-126.jpg"
-# [[params.ads]]
-#   title = "领取￥1888阿里云产品通用代金券"
-#   url = "https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=jdg9oj97"
-#   img = "https://img.alicdn.com/tfs/TB1aDXhXpzqK1RjSZFvXXcB7VXa-259-194.jpg"
