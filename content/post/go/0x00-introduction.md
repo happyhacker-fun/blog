@@ -15,13 +15,13 @@ categories: ["go"]
 
 1. 引用现成的包 go mod
 1. 有命令行交互 cobra
+1. 处理配置文件，包括ini和yaml viper
 1. 处理网络请求，包括Cookie、Get、Post请求以及不同的参数传递方式 resty/colly
 1. 下载图片并展示 resty/exec
 1. 识别图片验证码，本来希望能完美识别，但测试了tessocr之后觉得效果不好就没再深究了 tessocr
 1. 加快执行速度（最开始没有考虑） goroutine
-1. 处理配置文件，包括ini和yaml viper
 1. 连接数据库，仅仅是检查连通性 sql
-1. 将配置文件打包到可执行文件内 packr
+1. 将配置文件打包到可执行文件内 embed
 
 所以我就想就着这些需求，把这几天重温golang的过程记录一下。
 
