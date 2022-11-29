@@ -1,9 +1,9 @@
 [submodule "search/lunr"]
 	path = search/lunr
 	url = git@github.com:lovelock/hugo-lunr-zh.git
-[submodule "themes/github-style"]
-	path = themes/github-style
-	url = git@github.com:MeiK2333/github-style.git
 [submodule "public"]
 	path = public
 	url = git@github.com:happyhacker-fun/happyhacker-fun.github.io.git
+[submodule "themes/hugo-theme-stack"]
+	path = themes/hugo-theme-stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack
