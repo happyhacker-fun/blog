@@ -11,6 +11,7 @@ disablePathToLower = true
 
 # Required if you want to render robots.txt template
 enableRobotsTXT = true
+geekdocTagsToMenu = true
 
 # Needed for mermaid shortcodes
 [markup]
