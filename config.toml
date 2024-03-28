@@ -1,5 +1,5 @@
 baseURL = "http://blog.happyhacker.fun"
-title = "Geekdocs"
+title = "happyhacker的技术分享"
 theme = "hugo-geekdoc"
 
 pluralizeListTitles = false
