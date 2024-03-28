@@ -38,8 +38,10 @@ Usage: networksetup -setautoproxystate <networkservice> <on off>
 很明显也就看出来各自的用途了，知道这个了就很容写出两个脚本了
 
 **由于我的是黑苹果，使用的是有线网络，所以这里的网络名是en0，你的电脑用的是什么网络需要你自己去发现了**
+
 ### 设置代理
-```bash {linenos: false}
+
+```bash
 #!/usr/bin/env bash
 
 echo "Enabling auto proxy...."
@@ -52,7 +54,9 @@ if [ $? -eq 0 ]; then
     echo "Proxy is set"
 fi
 ```
+
 ### 关掉代理
+
 ```bash
 #!/usr/bin/env bash
 
@@ -68,7 +72,9 @@ fi
 ### 设置快捷方式
 
 把这分别保存为`disable_proxy`和`enable_proxy`，放在`$HOME/.local/bin/`目录下，然后在你的`$HOME/.zshrc`或`$HOME/.bashrc`的最后一行追加
+
 ```bash
 export PATH=$PATH:$HOME/.local/bin
 ```
+
 再执行`source ~/.zshrc`或`source ~/.bashrc`，就可以生效了。之后就可以通过执行`enable_proxy`开启代理，通过`disable_proxy`来关闭代理了。再也不用找那么深的入口去一遍遍的配置代理了。
