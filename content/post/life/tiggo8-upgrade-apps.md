@@ -3,6 +3,7 @@ title: "瑞虎8车机App升级"
 date: 2020-12-30T15:18:16+08:00
 tags: ["tiggo8"]
 categories: ["life"]
+draft: true
 ---
 
 瑞虎8自豪版车机里的App可以升级。据说是官方正规的方法。
@@ -14,12 +15,14 @@ categories: ["life"]
 ## 准备工作
 
 ### 硬件需求
+
 1. 电脑一台
 2. U盘一个（需要FAT32格式），用于存放要安装的包
 
 ## 操作流程
 
 ### 1. 下载安装包
+
 下载最[新版的高德地图](https://auto.amap.com/download)
 
 ![](/images/2020-12-30-16-05-13.png)
